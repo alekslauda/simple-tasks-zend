@@ -1,0 +1,13 @@
+SET NAMES 'utf8';
+CREATE DATABASE `icover_task`;
+SHOW DATABASES;
+USE `icover_task`;
+
+CREATE TABLE user (
+ id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+ name TEXT NOT NULL,
+ email VARCHAR(255) NOT NULL,
+ password TEXT NOT NULL,
+ PRIMARY KEY (id),
+ UNIQUE INDEX idx_email(email)
+);

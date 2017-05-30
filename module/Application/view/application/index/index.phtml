@@ -1,0 +1,37 @@
+<div class="row">
+	<?php if(count($this->flashMessenger()->getMessagesFromNamespace('login'))): ?>
+	<section class="alert alert-success">
+		<?php echo $this->flashMessenger()->getMessagesFromNamespace('login')[0]?>
+	</section>
+	<?php endif?>
+    <div class="span12">
+    <h2>Registered Users Table</h2>
+    	<?php if(!$this->layout()->isUserLogged):?>
+          <div class="well">
+          	<p>Please login to view it</p>
+          </div>
+       <?php else: ?>       
+          <table class="table">
+            <thead>
+              <tr>
+              	<th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Password</th>
+              </tr>
+            </thead>
+            <tbody>
+            <?php foreach($users as $user) : ?>
+              <tr <?= (strcmp($user->getEmail(), $this->layout()->loggedUser) == 0) ? "class='alert alert-info'" : false?>>
+                <td><?php echo $user->getId()?></td>
+                <td><?php echo $user->getName()?></td>
+                <td><?php echo $user->getEmail()?></td>
+                <td><?php echo $user->getPassword(true)?></td>
+              </tr>
+              <?php endforeach;?>
+            </tbody>
+          </table>
+          
+          <?php endif;?>
+    </div>
+</div>
